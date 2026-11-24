@@ -266,3 +266,36 @@ th {
         padding: 15px;
     }
 }
+
+/* MEMBUAT DASHBOARD MEMENUHI LAYAR */
+main.app:has(#dashboard:not(.hidden)) {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#dashboard {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.dashboard-layout {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.dashboard-content {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 30px;
+}
+
+@media (min-width: 651px) {
+    .sidebar {
+        min-height: 100vh;
+    }
+}
