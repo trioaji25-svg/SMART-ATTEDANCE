@@ -184,9 +184,15 @@ if (currentUser) {
 }
 
 // DAFTARKAN SERVICE WORKER
+
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./service-worker.js")
-            .catch(error => console.log("Service Worker gagal:", error));
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+            .then(() => {
+                console.log("Service Worker berhasil aktif!");
+            })
+            .catch(error => {
+                console.error("Service Worker gagal:", error);
+            });
     });
 }
