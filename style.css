@@ -12,11 +12,13 @@ body {
     min-height: 100vh;
 }
 
-.app {
+..app {
     width: 100%;
-    max-width: 650px;
-    margin: auto;
-    padding: 25px 16px;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 }
 
 .card {
@@ -296,5 +298,46 @@ main.app:has(#dashboard:not(.hidden)) {
 @media (min-width: 651px) {
     .sidebar {
         min-height: 100vh;
+    }
+}
+/* UKURAN HALAMAN LOGIN */
+#loginPage,
+#registerPage {
+    width: 100%;
+    max-width: 650px;
+    margin: 25px auto;
+}
+
+/* DASHBOARD FULL SCREEN */
+#dashboard {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.dashboard-layout {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 240px;
+    min-height: 100vh;
+}
+
+.dashboard-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* TAMPILAN HP */
+@media (max-width: 650px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex: auto;
+        min-height: auto;
     }
 }
