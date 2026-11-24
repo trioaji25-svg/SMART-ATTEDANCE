@@ -266,7 +266,6 @@ th {
         padding: 15px;
     }
 }
-
 /* MEMBUAT DASHBOARD MEMENUHI LAYAR */
 main.app:has(#dashboard:not(.hidden)) {
     width: 100%;
