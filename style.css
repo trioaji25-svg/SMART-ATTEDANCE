@@ -174,3 +174,95 @@ th {
     color: #16834a;
     text-align: center;
 }
+
+/* DASHBOARD SIDEBAR */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background: #f1f5f9;
+}
+
+.sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: #123b75;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-logo {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-menu {
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 9px;
+}
+
+.nav-menu:hover {
+    background: #2563eb;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 30px;
+    min-width: 0;
+}
+
+.dashboard-content .card {
+    margin-bottom: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .dashboard-content {
+        padding: 15px;
+    }
+}
