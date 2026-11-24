@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Attendance - Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #123b75;
+    color: white;
+    position: fixed;
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.menu {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu:hover, .menu.active {
+    background: #2563eb;
+}
+
+.main {
+    margin-left: 240px;
+    padding: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 25px;
+}
+
+.welcome {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 23px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px #0000000c;
+}
+
+.card h3 {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.content {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    min-height: 180px;
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+button.action {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+input {
+    padding: 12px;
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+@media(max-width: 650px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .menu {
+        display: inline-block;
+        width: auto;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <div class="logo">📘 Smart Attendance</div>
+
+    <button class="menu active" onclick="showPage('dashboard', this)">🏠 Dashboard</button>
+    <button class="menu" onclick="showPage('absensi', this)">📅 Absensi</button>
+    <button class="menu" onclick="showPage('riwayat', this)">📋 Riwayat Absensi</button>
+    <button class="menu" onclick="showPage('siswa', this)">👥 Data Siswa</button>
+    <button class="menu" onclick="showPage('profil', this)">👤 Profil</button>
+    <button class="menu" onclick="logout()">🚪 Keluar</button>
+</div>
+
+<div class="main">
+
+    <div class="header">
+        <h1>Dashboard</h1>
+        <span>Smart Attendance</span>
+    </div>
+
+    <div id="page">
+        <div class="welcome">
+            <h2>Selamat Datang! 👋</h2>
+            <p>Selamat datang di aplikasi Smart Attendance.</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Siswa</h3>
+                <p id="totalSiswa">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Sudah Absen</h3>
+                <p id="totalAbsen">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Tanggal</h3>
+                <p id="tanggal" style="font-size:18px">-</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Informasi Aplikasi</h2>
+            <p>Gunakan menu di sebelah kiri untuk mengelola absensi siswa.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+let siswa = JSON.parse(localStorage.getItem("daftarSiswa") || "[]");
+let absensi = JSON.parse(localStorage.getItem("dataAbsensi") || "[]");
+
+function showPage(page, button) {
+    document.querySelectorAll(".menu").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const area = document.getElementById("page");
+
+    if (page === "dashboard") {
+        area.innerHTML = `
+        <div class="welcome">
+            <h2>Selamat Datang! 👋</h2>
+            <p>Selamat menggunakan Smart Attendance.</p>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Siswa</h3>
+                <p>${siswa.length}</p>
+            </div>
+            <div class="card">
+                <h3>Sudah Absen</h3>
+                <p>${absensi.length}</p>
+            </div>
+            <div class="card">
+                <h3>Tanggal</h3>
+                <p style="font-size:18px">${new Date().toLocaleDateString("id-ID")}</p>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Informasi Aplikasi</h2>
+            <p>Kelola absensi siswa melalui menu yang tersedia.</p>
+        </div>`;
+    }
+
+    if (page === "absensi") {
+        area.innerHTML = `
+        <div class="content">
+            <h2>📅 Form Absensi</h2>
+            <p>Masukkan nama siswa:</p>
+            <input id="namaAbsen" placeholder="Nama siswa">
+            <br>
+            <button class="action" onclick="simpanAbsen()">Simpan Absensi</button>
+        </div>`;
+    }
+
+    if (page === "riwayat") {
+        let rows = absensi.map((item, i) =>
+            `<tr><td>${i+1}</td><td>${item.nama}</td><td>${item.tanggal}</td></tr>`
+        ).join("");
+
+        area.innerHTML = `
+        <div class="content">
+            <h2>📋 Riwayat Absensi</h2>
+            <table>
+                <tr><th>No</th><th>Nama</th><th>Tanggal</th></tr>
+                ${rows || "<tr><td colspan='3'>Belum ada data absensi</td></tr>"}
+            </table>
+        </div>`;
+    }
+
+    if (page === "siswa") {
+        area.innerHTML = `
+        <div class="content">
+            <h2>👥 Data Siswa</h2>
+            <input id="namaSiswa" placeholder="Masukkan nama siswa">
+            <br>
+            <button class="action" onclick="tambahSiswa()">Tambah Siswa</button>
+            <br><br>
+            <div id="daftar"></div>
+        </div>`;
+
+        tampilSiswa();
+    }
+
+    if (page === "profil") {
+        area.innerHTML = `
+        <div class="content">
+            <h2>👤 Profil Pengguna</h2>
+            <p>Aplikasi: Smart Attendance</p>
+            <p>Versi: 1.0</p>
+            <p>Status: Aktif</p>
+        </div>`;
+    }
+}
+
+function simpanAbsen() {
+    const nama = document.getElementById("namaAbsen").value.trim();
+
+    if (!nama) {
+        alert("Masukkan nama siswa terlebih dahulu!");
+        return;
+    }
+
+    absensi.push({
+        nama: nama,
+        tanggal: new Date().toLocaleString("id-ID")
+    });
+
+    localStorage.setItem("dataAbsensi", JSON.stringify(absensi));
+    alert("Absensi berhasil disimpan!");
+    showPage("dashboard", document.querySelector(".menu"));
+}
+
+function tambahSiswa() {
+    const nama = document.getElementById("namaSiswa").value.trim();
+
+    if (!nama) {
+        alert("Masukkan nama siswa!");
+        return;
+    }
+
+    siswa.push(nama);
+    localStorage.setItem("daftarSiswa", JSON.stringify(siswa));
+    tampilSiswa();
+    document.getElementById("namaSiswa").value = "";
+}
+
+function tampilSiswa() {
+    document.getElementById("daftar").innerHTML =
+        siswa.map((nama, i) =>
+            `<p>${i+1}. ${nama}</p>`
+        ).join("") || "Belum ada siswa.";
+}
+
+function logout() {
+    if (confirm("Yakin ingin keluar?")) {
+        localStorage.removeItem("currentUser");
+        window.location.href = "index.html";
+    }
+}
+
+document.getElementById("tanggal").textContent =
+    new Date().toLocaleDateString("id-ID");
+document.getElementById("totalSiswa").textContent = siswa.length;
+document.getElementById("totalAbsen").textContent = absensi.length;
+</script>
+
+</body>
+</html>
