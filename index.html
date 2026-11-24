@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Attendance</title>
+
+    <meta name="theme-color" content="#1769e0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- LOGIN -->
+        <section id="loginPage" class="card">
+            <div class="logo">SA</div>
+            <h1>Smart Attendance</h1>
+            <p class="subtitle">Silakan masuk ke akun Anda</p>
+
+            <form id="loginForm">
+                <label>Username</label>
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Masukkan username"
+                    required
+                >
+
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Masukkan password"
+                    required
+                >
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="switch">
+                Belum punya akun?
+                <a href="#" id="showRegister">Daftar sekarang</a>
+            </p>
+        </section>
+
+        <!-- REGISTER -->
+        <section id="registerPage" class="card hidden">
+            <div class="logo">SA</div>
+            <h1>Buat Akun</h1>
+            <p class="subtitle">Daftar untuk menggunakan aplikasi</p>
+
+            <form id="registerForm">
+                <label>Username</label>
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="Buat username"
+                    required
+                >
+
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Buat password"
+                    minlength="6"
+                    required
+                >
+
+                <button type="submit">Register</button>
+            </form>
+
+            <p class="switch">
+                Sudah punya akun?
+                <a href="#" id="showLogin">Login</a>
+            </p>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="hidden">
+
+            <header class="dashboard-header">
+                <div>
+                    <p>Selamat datang,</p>
+                    <h1 id="welcomeName">Siswa</h1>
+                </div>
+                <div class="logo small">SA</div>
+            </header>
+
+            <div class="card">
+                <h2>Absensi Siswa</h2>
+                <p class="subtitle">
+                    Silakan isi kehadiran hari ini.
+                </p>
+
+                <form id="attendanceForm">
+                    <label>Nama Siswa</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Nama lengkap"
+                        required
+                    >
+
+                    <label>Status Kehadiran</label>
+                    <select id="attendanceStatus" required>
+                        <option value="">Pilih status</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Izin">Izin</option>
+                        <option value="Sakit">Sakit</option>
+                    </select>
+
+                    <button type="submit">Kirim Absensi</button>
+                </form>
+
+                <p id="attendanceMessage"></p>
+            </div>
+
+            <div class="card">
+                <h2>Riwayat Absensi</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Status</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceHistory"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <button id="logoutButton" class="logout">
+                Logout
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
