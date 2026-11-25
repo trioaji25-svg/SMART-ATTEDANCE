@@ -191,3 +191,47 @@ if ("serviceWorker" in navigator) {
             .catch(error => console.log("Service Worker gagal:", error));
     });
 }
+
+// MENGHAPUS SATU RIWAYAT ABSENSI
+function hapusRiwayat(index) {
+    if (!confirm("Apakah kamu yakin ingin menghapus riwayat ini?")) {
+        return;
+    }
+
+    let attendance = getData("attendance");
+    const username = localStorage.getItem("currentUser");
+
+    if (!attendance[index] ||
+        attendance[index].username !== username) {
+        alert("Data tidak ditemukan!");
+        return;
+    }
+
+    attendance.splice(index, 1);
+    saveData("attendance", attendance);
+
+    renderHistory();
+    alert("Riwayat berhasil dihapus!");
+}
+
+
+// MENGHAPUS SEMUA RIWAYAT AKUN AKTIF
+function hapusSemuaRiwayat() {
+    if (!confirm("Yakin ingin menghapus semua riwayat absensi?")) {
+        return;
+    }
+
+    const username = localStorage.getItem("currentUser");
+
+    let attendance = getData("attendance");
+
+    attendance = attendance.filter(
+        item => item.username !== username
+    );
+
+    saveData("attendance", attendance);
+
+    renderHistory();
+
+    alert("Semua riwayat berhasil dihapus!");
+}
