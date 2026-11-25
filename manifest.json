@@ -1,0 +1,26 @@
+{
+  "background_color": "#14213d",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "trioaji25-svg.github",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "SMART ATTEDANCE",
+  "start_url": "/",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "https://trioaji25-svg.github.io/SMART-ATTEDANCE/icon.svg",
+      "type": "image/svg+xml",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 0,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "description": "Smart Attendance adalah aplikasi absensi siswa berbasis web yang memudahkan proses pencatatan kehadiran, pengelolaan data siswa, dan pemantauan riwayat absensi secara digital."
+}
