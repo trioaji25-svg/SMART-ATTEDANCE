@@ -4,204 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Smart Attendance</title>
-
-    <meta name="theme-color" content="#1769e0">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <title>My Daily Tasks</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <main class="app">
+    <div class="container">
+        <header>
+            <h1>My Daily Tasks</h1>
+            <p>Atur kegiatanmu setiap hari ✨</p>
+        </header>
 
-        <!-- LOGIN -->
-        <section id="loginPage" class="card">
-            <div class="logo">SA</div>
-            <h1>Smart Attendance</h1>
-            <p class="subtitle">Silakan masuk ke akun Anda</p>
+        <div class="date" id="tanggal"></div>
 
-            <form id="loginForm">
-                <label>Username</label>
-                <input
-                    type="text"
-                    id="loginUsername"
-                    placeholder="Masukkan username"
-                    required
-                >
+        <div class="input-area">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Tuliskan tugasmu..."
+            >
+            <button onclick="tambahTugas()">+</button>
+        </div>
 
-                <label>Password</label>
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Masukkan password"
-                    required
-                >
+        <div class="task-info">
+            <h3>Daftar Tugas</h3>
+            <span id="jumlah">0 tugas</span>
+        </div>
 
-                <button type="submit">Login</button>
-            </form>
+        <ul id="taskList"></ul>
 
-            <p class="switch">
-                Belum punya akun?
-                <a href="#" id="showRegister">Daftar sekarang</a>
-            </p>
-        </section>
-
-        <!-- REGISTER -->
-        <section id="registerPage" class="card hidden">
-            <div class="logo">SA</div>
-            <h1>Buat Akun</h1>
-            <p class="subtitle">Daftar untuk menggunakan aplikasi</p>
-
-            <form id="registerForm">
-                <label>Username</label>
-                <input
-                    type="text"
-                    id="registerUsername"
-                    placeholder="Buat username"
-                    required
-                >
-
-                <label>Password</label>
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Buat password"
-                    minlength="6"
-                    required
-                >
-
-                <button type="submit">Register</button>
-            </form>
-
-            <p class="switch">
-                Sudah punya akun?
-                <a href="#" id="showLogin">Login</a>
-            </p>
-        </section>
-
-        <!-- DASHBOARD -->
-        
-
-            <header class="dashboard-header">
-                <div>
-                    <p>Selamat datang,</p>
-<section id="dashboard" class="hidden">
-
-    <div class="dashboard-layout">
-
-        <!-- MENU SAMPING -->
-        <aside class="sidebar">
-            <div class="sidebar-logo">📘 Smart Attendance</div>
-
-            <nav>
-                <a href="#home" class="nav-menu">🏠 Dashboard</a>
-                <a href="#attendanceSection" class="nav-menu">📅 Absensi</a>
-                <a href="#historySection" class="nav-menu">📋 Riwayat Absensi</a>
-                <a href="#studentSection" class="nav-menu">👥 Data Siswa</a>
-                <a href="#profileSection" class="nav-menu">👤 Profil</a>
-            </nav>
-
-            <button id="logoutButton" class="logout">
-                🚪 Logout
-            </button>
-        </aside>
-
-        <!-- KONTEN UTAMA -->
-        <main class="dashboard-content">
-
-            <header class="dashboard-header" id="home">
-                <div>
-                    <p>Selamat datang,</p>
-                    <h1 id="welcomeName">Siswa</h1>
-                </div>
-                <div class="logo small">SA</div>
-            </header>
-
-            <!-- ABSENSI -->
-            <section class="card" id="attendanceSection">
-                <h2>📅 Absensi Siswa</h2>
-                <p class="subtitle">Silakan isi kehadiran hari ini.</p>
-
-                <form id="attendanceForm">
-                    <label>Nama Siswa</label>
-                    <input type="text" id="studentName"
-                        placeholder="Nama lengkap" required>
-
-                    <label>Status Kehadiran</label>
-                    <select id="attendanceStatus" required>
-                        <option value="">Pilih status</option>
-                        <option value="Hadir">Hadir</option>
-                        <option value="Izin">Izin</option>
-                        <option value="Sakit">Sakit</option>
-                    </select>
-
-                    <button type="submit">Kirim Absensi</button>
-                </form>
-
-                <p id="attendanceMessage"></p>
-            </section>
-
-            <!-- RIWAYAT -->
-            <section class="card" id="historySection">
-                <h2>📋 Riwayat Absensi</h2>
-                
-<button onclick="hapusSemuaRiwayat()">
-    🗑️ Hapus Semua Riwayat
-</button>
-
-
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Status</th>
-                                <th>Tanggal</th>
-                            </tr>
-                        </thead>
-                        <tbody id="attendanceHistory"></tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- DATA SISWA -->
-            <section class="card" id="studentSection">
-                <h2>👥 Data Siswa</h2>
-                <p>Menu data siswa akan dikembangkan selanjutnya.</p>
-            </section>
-
-            <!-- PROFIL -->
-            <section class="card" id="profileSection">
-                <h2>👤 Profil Pengguna</h2>
-                <p>Username: <span id="profileName">Siswa</span></p>
-                <p>Aplikasi: Smart Attendance</p>
-            </section>
-
-        </main>
+        <div class="footer">
+            <p>Stay productive and keep going! 💙</p>
+        </div>
     </div>
 
-</section>
-
-    </main>
-
     <script src="script.js"></script>
-
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./sw.js")
-            .then(function(registration) {
-                console.log("Service Worker aktif!");
-            })
-            .catch(function(error) {
-                console.log("Service Worker gagal:", error);
-            });
-    });
-}
-</script>
-
 </body>
 </html>

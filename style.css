@@ -8,336 +8,111 @@
 
 body {
     background: #eef4ff;
-    color: #172b4d;
     min-height: 100vh;
+    color: #243b60;
 }
 
-..app {
-    width: 100%;
-    max-width: none;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-}
-
-.card {
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
     background: white;
     padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #00000010;
+}
+
+header {
     margin-bottom: 20px;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(20, 70, 140, 0.08);
 }
 
-.logo {
-    width: 65px;
-    height: 65px;
-    border-radius: 18px;
-    background: #1769e0;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 23px;
-    font-weight: bold;
-    margin: 0 auto 18px;
+header h1 {
+    color: #3478db;
+    font-size: 27px;
 }
 
-.logo.small {
-    width: 48px;
-    height: 48px;
-    margin: 0;
-    font-size: 18px;
+header p {
+    color: #8493a8;
+    margin-top: 8px;
 }
 
-h1 {
-    text-align: center;
-    color: #1769e0;
-    margin-bottom: 10px;
-}
-
-h2 {
-    color: #1769e0;
-    margin-bottom: 15px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #718096;
-    margin-bottom: 25px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin: 15px 0 8px;
-}
-
-input, select {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #d5dfed;
+.date {
+    background: #edf4ff;
+    padding: 12px;
     border-radius: 10px;
-    outline: none;
-    font-size: 15px;
-    background: white;
-}
-
-input:focus, select:focus {
-    border-color: #1769e0;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 10px;
-    background: #1769e0;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0e50b5;
-}
-
-.switch {
-    text-align: center;
-    margin-top: 20px;
-    color: #718096;
-}
-
-a {
-    color: #1769e0;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.dashboard-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: white;
-    padding: 20px;
     margin-bottom: 20px;
-    border-radius: 18px;
+    color: #3478db;
 }
 
-.dashboard-header h1 {
-    text-align: left;
-    margin-top: 5px;
-}
-
-.dashboard-header p {
-    color: #718096;
-}
-
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    padding: 12px 8px;
-    border-bottom: 1px solid #e5eaf2;
-    text-align: left;
-    font-size: 13px;
-}
-
-th {
-    background: #eef4ff;
-    color: #1769e0;
-}
-
-.logout {
-    background: #e54848;
-    margin-bottom: 25px;
-}
-
-.logout:hover {
-    background: #c72f2f;
-}
-
-#attendanceMessage {
-    margin-top: 15px;
-    color: #16834a;
-    text-align: center;
-}
-
-/* DASHBOARD SIDEBAR */
-.dashboard-layout {
+.input-area {
     display: flex;
-    min-height: 100vh;
-    width: 100%;
-    background: #f1f5f9;
-}
-
-.sidebar {
-    width: 240px;
-    min-width: 240px;
-    background: #123b75;
-    color: white;
-    padding: 25px 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-logo {
-    font-size: 19px;
-    font-weight: bold;
-    margin-bottom: 35px;
-}
-
-.sidebar nav {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 }
 
-.nav-menu {
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    border-radius: 9px;
-}
-
-.nav-menu:hover {
-    background: #2563eb;
-}
-
-.dashboard-content {
+.input-area input {
     flex: 1;
-    padding: 30px;
-    min-width: 0;
-}
-
-.dashboard-content .card {
-    margin-bottom: 20px;
-}
-
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-}
-
-.sidebar .logout {
-    margin-top: auto;
-    background: #dc2626;
-    color: white;
-    border: none;
     padding: 13px;
-    border-radius: 9px;
+    border: 1px solid #d8e3f3;
+    border-radius: 10px;
+    outline: none;
+}
+
+.input-area button {
+    width: 48px;
+    border: none;
+    background: #3478db;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-@media (max-width: 650px) {
-    .dashboard-layout {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .sidebar nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .nav-menu {
-        font-size: 13px;
-        padding: 10px;
-    }
-
-    .dashboard-content {
-        padding: 15px;
-    }
-}
-/* MEMBUAT DASHBOARD MEMENUHI LAYAR */
-main.app:has(#dashboard:not(.hidden)) {
-    width: 100%;
-    max-width: none;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-#dashboard {
-    width: 100%;
-    min-height: 100vh;
-}
-
-.dashboard-layout {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.dashboard-content {
-    flex: 1;
-    width: 100%;
-    min-width: 0;
-    padding: 30px;
-}
-
-@media (min-width: 651px) {
-    .sidebar {
-        min-height: 100vh;
-    }
-}
-/* UKURAN HALAMAN LOGIN */
-#loginPage,
-#registerPage {
-    width: 100%;
-    max-width: 650px;
-    margin: 25px auto;
-}
-
-/* DASHBOARD FULL SCREEN */
-#dashboard {
-    width: 100%;
-    min-height: 100vh;
-}
-
-.dashboard-layout {
-    width: 100%;
-    min-height: 100vh;
+.task-info {
     display: flex;
+    justify-content: space-between;
+    margin: 25px 0 15px;
 }
 
-.sidebar {
-    flex: 0 0 240px;
-    min-height: 100vh;
+.task-info span {
+    color: #8493a8;
 }
 
-.dashboard-content {
+#taskList {
+    list-style: none;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background: #f5f8ff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.task span {
     flex: 1;
-    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
-/* TAMPILAN HP */
-@media (max-width: 650px) {
-    .dashboard-layout {
-        flex-direction: column;
-    }
+.task.done span {
+    text-decoration: line-through;
+    color: #9aa6b5;
+}
 
-    .sidebar {
-        flex: auto;
-        min-height: auto;
-    }
+.task button {
+    background: #ffeded;
+    color: #e05252;
+    border: none;
+    padding: 8px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #8493a8;
+    font-size: 13px;
 }

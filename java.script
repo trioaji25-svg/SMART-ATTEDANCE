@@ -1,0 +1,94 @@
+
+// DATA TUGAS
+let daftarTugas = JSON.parse(
+    localStorage.getItem("daftarTugas")
+) || [];
+
+// MENYIMPAN TUGAS
+function simpanTugas() {
+    localStorage.setItem(
+        "daftarTugas",
+        JSON.stringify(daftarTugas)
+    );
+}
+
+// MENAMBAHKAN TUGAS
+function tambahTugas() {
+    const input = document.getElementById("taskInput");
+    const namaTugas = input.value.trim();
+
+    if (namaTugas === "") {
+        alert("Tulis tugas terlebih dahulu!");
+        return;
+    }
+
+    daftarTugas.push({
+        nama: namaTugas,
+        selesai: false
+    });
+
+    input.value = "";
+
+    simpanTugas();
+    tampilkanTugas();
+}
+
+// MENAMPILKAN TUGAS
+function tampilkanTugas() {
+    const list = document.getElementById("taskList");
+
+    list.innerHTML = "";
+
+    daftarTugas.forEach(function(tugas, index) {
+        const item = document.createElement("li");
+
+        item.className = "task";
+
+        if (tugas.selesai) {
+            item.classList.add("done");
+        }
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = tugas.selesai;
+
+        checkbox.onchange = function() {
+            daftarTugas[index].selesai = checkbox.checked;
+            simpanTugas();
+            tampilkanTugas();
+        };
+
+        const teks = document.createElement("span");
+        teks.textContent = tugas.nama;
+
+        const tombolHapus = document.createElement("button");
+        tombolHapus.textContent = "Hapus";
+
+        tombolHapus.onclick = function() {
+            daftarTugas.splice(index, 1);
+            simpanTugas();
+            tampilkanTugas();
+        };
+
+        item.appendChild(checkbox);
+        item.appendChild(teks);
+        item.appendChild(tombolHapus);
+
+        list.appendChild(item);
+    });
+
+    document.getElementById("jumlah").textContent =
+        daftarTugas.length + " tugas";
+}
+
+// TANGGAL HARI INI
+document.getElementById("tanggal").textContent =
+    new Date().toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
+// MENAMPILKAN DATA AWAL
+tampilkanTugas();
